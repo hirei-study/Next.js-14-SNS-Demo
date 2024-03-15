@@ -3,14 +3,14 @@ import React from "react";
 
 const UserProfile = async ({ params }: { params: { userId: string } }) => {
   const profileRes = await fetch(
-    `${process.env.BASE_URL}/users/profile/${params.userId}`,
+    `${process.env.NEXT_PUBLIC_API_BASEURL}/users/profile/${params.userId}`,
     {
       cache: "no-cache",
     }
   );
 
   const postRes = await fetch(
-    `${process.env.BASE_URL}/posts/${params.userId}`,
+    `${process.env.NEXT_PUBLIC_API_BASEURL}/posts/${params.userId}`,
     {
       cache: "no-cache",
     }
