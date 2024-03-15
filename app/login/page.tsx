@@ -12,29 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/auth";
 import apiClient from "@/lib/apiClient";
+import { formLoginSchema } from "@/lib/formLoginSchem";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Head from "next/head";
 import { useRouter, redirect } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-export const formLoginSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "メールアドレスを入力してください。" })
-    .email()
-    .regex(/^[\u0021-\u007e]+$/u, {
-      message:
-        "メールアドレスの形式に則って入力してください。例: xxx@gmail.com",
-    }),
-  password: z
-    .string()
-    .min(5, { message: "パスワードは5文字以上入力してください。" })
-    .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{5,100}$/i, {
-      message: "パスワードは半角英数字混合で入力してください。",
-    }),
-});
 
 const Login = () => {
   const router = useRouter();
@@ -128,39 +112,6 @@ const Login = () => {
                   </FormItem>
                 )}
               />
-
-              {/* <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                メールアドレス
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div className="mt-6">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                パスワード
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div> */}
 
               <div className="mt-6">
                 <Button
